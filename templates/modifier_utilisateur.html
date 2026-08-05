@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Modifier un utilisateur</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<h1>Modifier un utilisateur</h1>
+
+<hr>
+
+<form method="POST">
+
+    <label>UID RFID</label><br>
+    <input type="text" name="uid" value="{{ utilisateur.uid }}" required>
+    <br><br>
+
+    <label>Nom</label><br>
+    <input type="text" name="nom" value="{{ utilisateur.nom }}" required>
+    <br><br>
+
+    <label>Service</label><br>
+    <input type="text" name="service" value="{{ utilisateur.service }}">
+    <br><br>
+
+    <label>Fonction</label><br>
+    <input type="text" name="fonction" value="{{ utilisateur.fonction }}">
+    <br><br>
+
+    <label>Email</label><br>
+    <input type="email" name="email" value="{{ utilisateur.email }}">
+    <br><br>
+
+    <label>Téléphone</label><br>
+    <input type="text" name="telephone" value="{{ utilisateur.telephone }}">
+    <br><br>
+
+    <label>
+
+        <input
+            type="checkbox"
+            name="actif"
+            {% if utilisateur.actif %}checked{% endif %}
+        >
+
+        Utilisateur actif
+
+    </label>
+
+    <br><br>
+
+    <button type="submit">
+
+        Enregistrer les modifications
+
+    </button>
+
+    <a href="/utilisateurs">
+
+        Annuler
+
+    </a>
+
+</form>
+
+</body>
+
+</html>

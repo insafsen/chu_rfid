@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Accueil - CHU RFID</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>CHU de Fès</h1>
+
+    <p>Système de contrôle d'accès RFID</p>
+
+    <nav>
+
+        <a href="/">Accueil</a>
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/utilisateurs">Utilisateurs</a>
+
+        <a href="/historique">Historique</a>
+
+        <a href="/export">Export Excel</a>
+
+    </nav>
+
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Bienvenue Administrateur</h2>
+
+        <p>
+            Cette application permet de gérer le système de contrôle
+            d'accès RFID du CHU de Fès.
+        </p>
+
+        <br>
+
+        <p><strong>État du serveur :</strong> 🟢 En ligne</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Menu principal</h2>
+
+        <table>
+
+            <tr>
+                <th>Fonction</th>
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td>
+                    <a href="/dashboard">🏠 Dashboard</a>
+                </td>
+
+                <td>
+                    Consulter les statistiques du système.
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    <a href="/utilisateurs">👥 Gestion des utilisateurs</a>
+                </td>
+
+                <td>
+                    Ajouter, modifier et supprimer des utilisateurs RFID.
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    <a href="/historique">📋 Historique</a>
+                </td>
+
+                <td>
+                    Consulter les accès enregistrés.
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+                    <a href="/export">📊 Export Excel</a>
+                </td>
+
+                <td>
+                    Exporter les accès au format Excel.
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<footer>
+
+Projet RFID - CHU de Fès © 2026
+
+</footer>
+
+</body>
+
+</html>

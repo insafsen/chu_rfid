@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Gestion des utilisateurs</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>CHU de Fès</h1>
+
+    <p>Système de contrôle d'accès RFID</p>
+
+    <nav>
+
+        <a href="/">Accueil</a>
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/utilisateurs">Utilisateurs</a>
+
+        <a href="/historique">Historique</a>
+
+        <a href="/export">Export Excel</a>
+
+    </nav>
+
+</header>
+
+
+<div class="container">
+
+    <!-- ====================== -->
+    <!-- AJOUT UTILISATEUR -->
+    <!-- ====================== -->
+
+    <div class="card">
+
+        <h2>Ajouter un utilisateur</h2>
+
+        <form action="/ajouter" method="POST">
+
+            <label>UID</label>
+
+            <input
+                type="text"
+                name="uid"
+                required
+            >
+
+            <label>Nom</label>
+
+            <input
+                type="text"
+                name="nom"
+                required
+            >
+
+            <label>Service</label>
+
+            <input
+                type="text"
+                name="service"
+            >
+
+            <label>Fonction</label>
+
+            <input
+                type="text"
+                name="fonction"
+            >
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                name="email"
+            >
+
+            <label>Téléphone</label>
+
+            <input
+                type="text"
+                name="telephone"
+            >
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="actif"
+                    checked
+                >
+
+                Utilisateur actif
+
+            </label>
+
+            <br><br>
+
+            <button type="submit">
+
+                Ajouter
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- ====================== -->
+    <!-- LISTE UTILISATEURS -->
+    <!-- ====================== -->
+
+    <div class="card">
+
+        <h2>Liste des utilisateurs</h2>
+
+        <table>
+
+            <tr>
+
+                <th>UID</th>
+
+                <th>Nom</th>
+
+                <th>Service</th>
+
+                <th>Fonction</th>
+
+                <th>Email</th>
+
+                <th>Téléphone</th>
+
+                <th>Etat</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+            {% for utilisateur in utilisateurs %}
+
+            <tr>
+
+                <td>{{ utilisateur.uid }}</td>
+
+                <td>{{ utilisateur.nom }}</td>
+
+                <td>{{ utilisateur.service }}</td>
+
+                <td>{{ utilisateur.fonction }}</td>
+
+                <td>{{ utilisateur.email }}</td>
+
+                <td>{{ utilisateur.telephone }}</td>
+
+                <td>
+
+                    {% if utilisateur.actif %}
+
+                        🟢 Actif
+
+                    {% else %}
+
+                        🔴 Inactif
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <a
+                        href="/modifier/{{ utilisateur.id }}"
+                        class="btn-modifier"
+                    >
+
+                        Modifier
+
+                    </a>
+
+                    &nbsp;
+
+                    <a
+                        href="/supprimer/{{ utilisateur.id }}"
+                        class="btn-supprimer"
+                        onclick="return confirm('Supprimer cet utilisateur ?');"
+                    >
+
+                        Supprimer
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+<footer>
+
+Projet RFID - CHU de Fès © 2026
+
+</footer>
+
+</body>
+
+</html>

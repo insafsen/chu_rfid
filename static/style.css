@@ -1,0 +1,291 @@
+/* ==========================
+   STYLE GENERAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    background:#f4f6f9;
+
+}
+
+
+/* ==========================
+   HEADER
+========================== */
+
+header{
+
+    background:#0B4F8A;
+
+    color:white;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:0px 3px 10px rgba(0,0,0,0.2);
+
+}
+
+header h1{
+
+    font-size:34px;
+
+}
+
+header p{
+
+    margin-top:10px;
+
+    font-size:18px;
+
+}
+
+
+/* ==========================
+   MENU
+========================== */
+
+nav{
+
+    margin-top:25px;
+
+}
+
+nav a{
+
+    text-decoration:none;
+
+    color:white;
+
+    background:#1565C0;
+
+    padding:12px 22px;
+
+    margin:8px;
+
+    border-radius:8px;
+
+    transition:0.3s;
+
+    display:inline-block;
+
+    font-weight:bold;
+
+}
+
+nav a:hover{
+
+    background:#1976D2;
+
+}
+
+
+/* ==========================
+   CONTENU
+========================== */
+
+.container{
+
+    width:90%;
+
+    margin:auto;
+
+    margin-top:40px;
+
+}
+
+
+/* ==========================
+   CARTES
+========================== */
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:0px 0px 10px rgba(0,0,0,0.15);
+
+    margin-bottom:30px;
+
+}
+
+.card h2{
+
+    color:#0B4F8A;
+
+    margin-bottom:20px;
+
+}
+
+
+/* ==========================
+   TABLEAUX
+========================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+table th{
+
+    background:#0B4F8A;
+
+    color:white;
+
+    padding:12px;
+
+}
+
+table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+table tr:hover{
+
+    background:#f1f1f1;
+
+}
+
+
+/* ==========================
+   FORMULAIRES
+========================== */
+
+input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:8px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+
+}
+
+label{
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================
+   BOUTONS
+========================== */
+
+button{
+
+    background:#28a745;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:0.3s;
+
+}
+
+button:hover{
+
+    background:#218838;
+
+}
+
+
+/* ==========================
+   BOUTONS ACTIONS
+========================== */
+
+.btn-modifier{
+
+    background:#007BFF;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:5px;
+
+    text-decoration:none;
+
+}
+
+.btn-modifier:hover{
+
+    background:#0056b3;
+
+}
+
+.btn-supprimer{
+
+    background:#DC3545;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:5px;
+
+    text-decoration:none;
+
+}
+
+.btn-supprimer:hover{
+
+    background:#b02a37;
+
+}
+
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer{
+
+    margin-top:40px;
+
+    background:#0B4F8A;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+}
