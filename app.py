@@ -36,12 +36,18 @@ def login():
 
         admin = chercher_admin(username)
 
+        print("USERNAME SAISI :", username)
+        print("ADMIN TROUVÉ :", admin)
+
         if admin:
 
-            if check_password_hash(admin["password"], password):
+            print("HASH :", admin["password"])
 
+            resultat = check_password_hash(admin["password"], password)
+            print("TEST MOT DE PASSE :", resultat)
+
+            if resultat:
                 session["admin"] = admin["username"]
-
                 return redirect(url_for("index"))
 
         return render_template(
@@ -50,7 +56,6 @@ def login():
         )
 
     return render_template("login.html")
-
 
 # =====================================================
 # LOGOUT
