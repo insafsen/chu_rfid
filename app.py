@@ -5,8 +5,6 @@ from werkzeug.security import check_password_hash
 
 import config
 
-print("CONFIG UTILISÉ :", config.__file__)
-
 from database import (
     afficher_utilisateurs,
     ajouter_utilisateur,
@@ -36,15 +34,9 @@ def login():
 
         admin = chercher_admin(username)
 
-        print("USERNAME SAISI :", username)
-        print("ADMIN TROUVÉ :", admin)
-
         if admin:
 
-            print("HASH :", admin["password"])
-
             resultat = check_password_hash(admin["password"], password)
-            print("TEST MOT DE PASSE :", resultat)
 
             if resultat:
                 session["admin"] = admin["username"]
@@ -56,6 +48,7 @@ def login():
         )
 
     return render_template("login.html")
+
 
 # =====================================================
 # LOGOUT
@@ -235,12 +228,7 @@ def supprimer(id):
 @app.route("/api/rfid", methods=["POST"])
 def api_rfid():
 
-    print("\n==============================")
-    print("Nouvelle requête RFID")
-
     donnees = request.get_json()
-
-    print("JSON reçu :", donnees)
 
     if not donnees:
 
@@ -251,11 +239,7 @@ def api_rfid():
 
     uid = donnees.get("uid")
 
-    print("UID reçu :", uid)
-
     utilisateur = chercher_carte(uid)
-
-    print("Utilisateur trouvé :", utilisateur)
 
     if utilisateur and utilisateur["actif"]:
 
@@ -264,8 +248,6 @@ def api_rfid():
             utilisateur["nom"],
             "AUTORISE"
         )
-
-        print("==> ACCES AUTORISE")
 
         return jsonify({
             "resultat": "AUTORISE",
@@ -278,19 +260,24 @@ def api_rfid():
         "REFUSE"
     )
 
-    print("==> ACCES REFUSE")
-
     return jsonify({
         "resultat": "REFUSE"
     })
 
 
 # =====================================================
-# LANCEMENT
+# HEALTHCHECK
 # =====================================================
+
 @app.route("/health")
 def health():
     return "OK"
+
+
+# =====================================================
+# LANCEMENT
+# =====================================================
+
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
