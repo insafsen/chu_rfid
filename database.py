@@ -1,6 +1,6 @@
 import mysql.connector
 from datetime import datetime
-from config import HOST, USER, PASSWORD, DATABASE, PORT
+from config import HOST, USER, PASSWORD, DATABASE, DB_PORT
 
 
 # ==========================================
@@ -16,13 +16,13 @@ def connecter():
             user=USER,
             password=PASSWORD,
             database=DATABASE,
-            port=PORT
+            port=DB_PORT
         )
 
         print("\n===================================")
         print("✅ CONNEXION MYSQL REUSSIE")
         print("HOST :", HOST)
-        print("PORT :", PORT)
+        print("PORT :", DB_PORT)
         print("DATABASE :", DATABASE)
         print("USER :", USER)
         print("===================================\n")
