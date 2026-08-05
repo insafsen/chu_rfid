@@ -1,3 +1,4 @@
+print("JE SUIS LE CONFIG DE serveur_CHU")
 import os
 
 print("MYSQLHOST =", os.environ.get("MYSQLHOST"))
