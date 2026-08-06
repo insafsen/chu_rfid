@@ -13,7 +13,8 @@ from database import (
     chercher_utilisateur,
     chercher_admin,
     chercher_carte,
-    enregistrer_acces
+    enregistrer_acces,
+    statistiques_dashboard
 )
 
 app = Flask(__name__)
@@ -85,7 +86,12 @@ def dashboard():
     if "admin" not in session:
         return redirect(url_for("login"))
 
-    return render_template("dashboard.html")
+    stats = statistiques_dashboard()
+
+    return render_template(
+        "dashboard.html",
+        stats=stats
+    )
 
 
 # =====================================================

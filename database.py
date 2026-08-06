@@ -294,3 +294,53 @@ def enregistrer_acces(uid, nom, resultat):
 
     curseur.close()
     connexion.close()
+
+    # ==========================================
+# Dashboard
+# ==========================================
+
+def statistiques_dashboard():
+
+    connexion = connecter()
+
+    if connexion is None:
+        return None
+
+    curseur = connexion.cursor(dictionary=True)
+
+    stats = {}
+
+    # Nombre total d'utilisateurs
+    curseur.execute("SELECT COUNT(*) AS total FROM users")
+    stats["total_utilisateurs"] = curseur.fetchone()["total"]
+
+    # Nombre d'utilisateurs actifs
+    curseur.execute("SELECT COUNT(*) AS total FROM users WHERE actif=1")
+    stats["utilisateurs_actifs"] = curseur.fetchone()["total"]
+
+    # Nombre total d'accès
+    curseur.execute("SELECT COUNT(*) AS total FROM logs")
+    stats["total_acces"] = curseur.fetchone()["total"]
+
+    # Accès autorisés
+    curseur.execute("SELECT COUNT(*) AS total FROM logs WHERE resultat='AUTORISE'")
+    stats["acces_autorises"] = curseur.fetchone()["total"]
+
+    # Accès refusés
+    curseur.execute("SELECT COUNT(*) AS total FROM logs WHERE resultat='REFUSE'")
+    stats["acces_refuses"] = curseur.fetchone()["total"]
+
+    # Dernier accès
+    curseur.execute("""
+        SELECT nom, date_acces, heure_acces, resultat
+        FROM logs
+        ORDER BY id DESC
+        LIMIT 1
+    """)
+
+    stats["dernier_acces"] = curseur.fetchone()
+
+    curseur.close()
+    connexion.close()
+
+    return stats
