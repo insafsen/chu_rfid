@@ -299,6 +299,10 @@ def enregistrer_acces(uid, nom, resultat):
 # Dashboard
 # ==========================================
 
+# ==========================================
+# Dashboard
+# ==========================================
+
 def statistiques_dashboard():
 
     connexion = connecter()
@@ -330,17 +334,36 @@ def statistiques_dashboard():
     curseur.execute("SELECT COUNT(*) AS total FROM logs WHERE resultat='REFUSE'")
     stats["acces_refuses"] = curseur.fetchone()["total"]
 
-    # Dernier accès
-    curseur.execute("""
-        SELECT nom, date_acces, heure_acces, resultat
-        FROM logs
-        ORDER BY id DESC
-        LIMIT 1
-    """)
-
-    stats["dernier_acces"] = curseur.fetchone()
 
     curseur.close()
     connexion.close()
 
     return stats
+
+# ==========================================
+# Historique des accès
+# ==========================================
+
+def afficher_historique():
+
+    connexion = connecter()
+
+    if connexion is None:
+        return []
+
+    curseur = connexion.cursor(dictionary=True)
+
+    sql = """
+    SELECT *
+    FROM logs
+    ORDER BY date_acces DESC, heure_acces DESC
+    """
+
+    curseur.execute(sql)
+
+    historique = curseur.fetchall()
+
+    curseur.close()
+    connexion.close()
+
+    return historique

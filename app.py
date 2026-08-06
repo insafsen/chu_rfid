@@ -14,7 +14,8 @@ from database import (
     chercher_admin,
     chercher_carte,
     enregistrer_acces,
-    statistiques_dashboard
+    statistiques_dashboard,
+    afficher_historique
 )
 
 app = Flask(__name__)
@@ -104,7 +105,12 @@ def historique():
     if "admin" not in session:
         return redirect(url_for("login"))
 
-    return render_template("historique.html")
+    historique = afficher_historique()
+
+    return render_template(
+        "historique.html",
+        historique=historique
+    )
 
 
 # =====================================================

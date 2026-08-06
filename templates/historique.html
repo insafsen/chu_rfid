@@ -1,26 +1,156 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
 
 <meta charset="UTF-8">
 
-<title>Historique</title>
+<title>Historique des accès</title>
+
+<style>
+
+body{
+
+    font-family:Arial;
+    background:#f4f6f9;
+    margin:30px;
+
+}
+
+h1{
+
+    text-align:center;
+    color:#0b5394;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    margin-top:30px;
+
+}
+
+th{
+
+    background:#0b5394;
+    color:white;
+    padding:12px;
+
+}
+
+td{
+
+    padding:10px;
+    text-align:center;
+    border:1px solid #ddd;
+
+}
+
+.autorise{
+
+    color:green;
+    font-weight:bold;
+
+}
+
+.refuse{
+
+    color:red;
+    font-weight:bold;
+
+}
+
+.retour{
+
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 25px;
+    background:#0b5394;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+
+}
+
+.retour:hover{
+
+    background:#083763;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h1>Historique des accès</h1>
+<h1>Historique des accès RFID</h1>
 
-<hr>
+<table>
 
-<p>Cette page affichera prochainement tous les accès RFID.</p>
+<tr>
+
+<th>ID</th>
+<th>UID</th>
+<th>Nom</th>
+<th>Date</th>
+<th>Heure</th>
+<th>Résultat</th>
+
+</tr>
+
+{% for ligne in historique %}
+
+<tr>
+
+<td>{{ ligne.id }}</td>
+
+<td>{{ ligne.uid }}</td>
+
+<td>{{ ligne.nom }}</td>
+
+<td>{{ ligne.date_acces }}</td>
+
+<td>{{ ligne.heure_acces }}</td>
+
+<td>
+
+{% if ligne.resultat=="AUTORISE" %}
+
+<span class="autorise">
+
+{{ ligne.resultat }}
+
+</span>
+
+{% else %}
+
+<span class="refuse">
+
+{{ ligne.resultat }}
+
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
 
 <br>
 
-<a href="/">Retour au menu</a>
+<a href="/" class="retour">
+
+Retour au menu
+
+</a>
 
 </body>
 
