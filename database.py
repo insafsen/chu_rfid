@@ -367,3 +367,29 @@ def afficher_historique():
     connexion.close()
 
     return historique
+
+# ==========================================
+# Export Excel
+# ==========================================
+
+def recuperer_logs():
+
+    connexion = connecter()
+
+    if connexion is None:
+        return []
+
+    curseur = connexion.cursor(dictionary=True)
+
+    curseur.execute("""
+        SELECT uid, nom, date_acces, heure_acces, resultat
+        FROM logs
+        ORDER BY date_acces DESC, heure_acces DESC
+    """)
+
+    logs = curseur.fetchall()
+
+    curseur.close()
+    connexion.close()
+
+    return logs

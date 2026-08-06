@@ -1,3 +1,7 @@
+
+from flask import send_file
+from openpyxl import Workbook
+from io import BytesIO
 import os
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
@@ -15,7 +19,8 @@ from database import (
     chercher_carte,
     enregistrer_acces,
     statistiques_dashboard,
-    afficher_historique
+    afficher_historique,
+    recuperer_logs
 )
 
 app = Flask(__name__)
@@ -123,8 +128,42 @@ def export():
     if "admin" not in session:
         return redirect(url_for("login"))
 
-    return "<h2>Export Excel (à développer)</h2>"
+    logs = recuperer_logs()
 
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Historique RFID"
+
+    ws.append([
+        "UID",
+        "Nom",
+        "Date",
+        "Heure",
+        "Résultat"
+    ])
+
+    for ligne in logs:
+
+        ws.append([
+            ligne["uid"],
+            ligne["nom"],
+            str(ligne["date_acces"]),
+            str(ligne["heure_acces"]),
+            ligne["resultat"]
+        ])
+
+    fichier = BytesIO()
+
+    wb.save(fichier)
+
+    fichier.seek(0)
+
+    return send_file(
+        fichier,
+        as_attachment=True,
+        download_name="Historique_RFID.xlsx",
+        mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
 
 # =====================================================
 # UTILISATEURS
